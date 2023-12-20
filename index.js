@@ -44,27 +44,14 @@ function CharacterCard(image, name, status, type, episode) {
   return card;
 }
 
-/*
-id	175--
-name	"Jerry Smith" --
-status	"Alive" --
-species	"Human"
-type	"" --
-gender	"Male"
-origin	
-name	"Earth (C-137)"
-url	"https://rickandmortyapi.com/api/location/1"
-location	
-name	"Earth (C-137)"
-url	"https://rickandmortyapi.com/api/location/1"
-image	"https://rickandmortyapi.com/api/character/avatar/175.jpeg"
-episode	
-0	"https://rickandmortyapi.com/api/episode/1"
-1	"https://rickandmortyapi.com/api/episode/2"
-2	"https://rickandmortyapi.com/api/episode/3"
-3	"https://rickandmortyapi.com/api/episode/4"
-4	"https://rickandmortyapi.com/api/episode/5"
-5	"https://rickandmortyapi.com/api/episode/6"
-6	"https://rickandmortyapi.com/api/episode/22"
-url	"https://rickandmortyapi.com/api/character/175"
-created	"2017-12-29T18:07:17.610Z"*/
+async function fetchCharacters() {
+const response = await fetch(
+  "https://rickandmortyapi.com/api/character"
+);
+console.log(response);
+const data = await response.json();
+console.log("character", data);
+return data;
+}
+fetchCharacters();
+
