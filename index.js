@@ -15,6 +15,21 @@ const searchQuery = "";
 
 const image = "";
 
+async function fetchCharacters() {
+  const response = await fetch(
+    "https://rickandmortyapi.com/api/character"
+  );
+  const data = await response.json();
+  console.log("character", data);
+
+  const dataArray = data.results;
+
+  dataArray.forEach(element => {
+    console.log("Element aus dataRuMArray",element);
+    const cardAppend = CharacterCard(element.image, element.name, element.status, element.type, element.episode.length());
+  });
+  } 
+
 function CharacterCard(image, name, status, type, episode) {
   const card = document.createElement("li");
   card.innerHTML = `  
@@ -44,14 +59,6 @@ function CharacterCard(image, name, status, type, episode) {
   return card;
 }
 
-async function fetchCharacters() {
-const response = await fetch(
-  "https://rickandmortyapi.com/api/character"
-);
-console.log(response);
-const data = await response.json();
-console.log("character", data);
-return data;
-}
-fetchCharacters();
+
+
 
