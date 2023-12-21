@@ -1,4 +1,4 @@
-import { CharacterCard } from './CharacterCard.js';
+import { CharacterCard } from "./CharacterCard.js";
 
 const cardContainer = document.querySelector('[data-js="card-container"]');
 const searchBarContainer = document.querySelector(
@@ -13,7 +13,7 @@ const pagination = document.querySelector('[data-js="pagination"]');
 // // States
 let maxPage = 42;
 let page = 1;
-const searchQuery = "";
+let searchQuery = "";
 
 const image = "";
 
@@ -23,44 +23,45 @@ prevButton.addEventListener("click", () => {
   if (page > 1) {
     page--;
     fetchCharacters();
-    pagination.textContent = `${page}/${maxPage}`
-  } 
+    pagination.textContent = `${page}/${maxPage}`;
+  }
 });
 
 nextButton.addEventListener("click", () => {
   if (page < maxPage) {
     page++;
     fetchCharacters();
-    pagination.textContent = `${page}/${maxPage}`
+    pagination.textContent = `${page}/${maxPage}`;
   }
 });
 
+// searchBar.addEventListener("submit", () => {
+// clearList()
+// });
+
 async function fetchCharacters() {
-  cardContainer.innerHTML="";
+  cardContainer.innerHTML = "";
   try {
-  const response = await fetch(
-    "https://rickandmortyapi.com/api/character?page=" + page
-  );
-  const data = await response.json();
-  console.log("character", data);
+    const response = await fetch(
+      "https://rickandmortyapi.com/api/character?page=" + page
+    );
+    const data = await response.json();
+    console.log("character", data);
 
-  const characters = data.results;
+    const characters = data.results;
 
-  characters.forEach(character => {
-    console.log("Character", character);
-    const card = CharacterCard(character.image, character.name, character.status, character.type, character.episode);
-    cardContainer.append(card);
-  });
-
+    characters.forEach((character) => {
+      console.log("Character", character);
+      const card = CharacterCard(
+        character.image,
+        character.name,
+        character.status,
+        character.type,
+        character.episode
+      );
+      cardContainer.append(card);
+    });
   } catch (error) {
-    console.error(error)
+    console.error(error);
   }
-} 
-
-
-
-
-
-
-
-
+}
