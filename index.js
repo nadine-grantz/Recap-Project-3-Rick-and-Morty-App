@@ -32,23 +32,33 @@ nextButton.addEventListener("click", () => {
     page++;
     fetchCharacters();
     pagination.textContent = `${page}/${maxPage}`;
+
   }
 });
 
-// searchBar.addEventListener("submit", () => {
-// clearList()
-// });
+searchBar.addEventListener("submit", (event) => {
+event.preventDefault();
+
+searchQuery = event.target.elements.query.value;
+fetchCharacters();
+});
 
 async function fetchCharacters() {
   cardContainer.innerHTML = "";
+  
   try {
     const response = await fetch(
-      "https://rickandmortyapi.com/api/character?page=" + page
+      "https://rickandmortyapi.com/api/character?page=" + page + "&name=" + searchQuery
     );
     const data = await response.json();
-    console.log("character", data);
+    console.log("data", data);
 
     const characters = data.results;
+
+    maxPage = data.info.pages;
+    console.log("maxpage" , maxPage);
+    
+    pagination.textContent = `${page}/${maxPage}`;
 
     characters.forEach((character) => {
       console.log("Character", character);
