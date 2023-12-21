@@ -1,9 +1,8 @@
 export function CharacterCard(image, name, status, type, episode) {
-    
-    const card = document.createElement("li");
-    card.classList.add('character-card');
-    
-    card.innerHTML = `  
+  const card = document.createElement("li");
+  card.classList.add("character-card");
+
+  card.innerHTML = `  
     <li class="card">
         <div class="card__image-container">
           <img
@@ -20,12 +19,12 @@ export function CharacterCard(image, name, status, type, episode) {
           <dd class="card__info-description">${status}</dd>
   
           <dt class="card__info-title">Type</dt>
-          <dd class="card__info-description">${type}</dd>
+          <dd class="card__info-description">${type}</dd>  
           
           <dt class="card__info-title">Occurrences</dt>
           <dd class="card__info-description">${episode.length}</dd>
           </dl>
         </div>
       </li>`;
-    return card;
-  }
+  return card;
+}
