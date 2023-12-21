@@ -20,20 +20,27 @@ const cardContainer = document.querySelector('[data-js="card-container"]');
 fetchCharacters();
 
 async function fetchCharacters() {
+  try {
+
+  
   const response = await fetch(
     "https://rickandmortyapi.com/api/character"
   );
   const data = await response.json();
   console.log("character", data);
 
-  const dataArray = data.results;
+  const characters = data.results;
 
-  dataArray.forEach(element => {
-    console.log("Element aus dataRuMArray",element);
-    const cardAppend = CharacterCard(element.image, element.name, element.status, element.type, element.episode);
-    cardContainer.append(cardAppend);
+  characters.forEach(character => {
+    console.log("Character", character);
+    const card = CharacterCard(character.image, character.name, character.status, character.type, character.episode);
+    cardContainer.append(card);
   });
-  } 
+
+  } catch (error) {
+    console.error(error)
+  }
+} 
 
 
 

@@ -23,7 +23,7 @@ export function CharacterCard(image, name, status, type, episode) {
           <dd class="card__info-description">${type}</dd>
           
           <dt class="card__info-title">Occurrences</dt>
-          <dd class="card__info-description">${episode.length()}</dd>
+          <dd class="card__info-description">${episode.length}</dd>
           </dl>
         </div>
       </li>`;
